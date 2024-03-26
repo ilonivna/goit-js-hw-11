@@ -1,13 +1,12 @@
-import { query } from "../main";
-import { galleryList } from "../main";
+const galleryList = document.querySelector(".gallery");
 
 export function fetchImages() {
     const searchParams = new URLSearchParams({
         key: "43047953-84179c8300fd9f33658a206cf",
-        q: query,
-        image_type: "photo",
-        orientation: "horizontal",
-        safesearch: "true",
+        // q: query,
+        // image_type: "photo",
+        // orientation: "horizontal",
+        // safesearch: "true",
     });
     galleryList.innerHTML = `<span class="loader"></span>`;
     const url = `https://pixabay.com/api/?${searchParams}`;

@@ -3,51 +3,43 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
-import { galleryList } from "../main";
+
+const galleryList = document.querySelector(".gallery");
 
 export function renderImages(data) {
-    galleryList.innerHTML = "";
-    const images = data.hits;
-    if (images.length === 0) {
-      iziToast.error({
+  if (data.length == 0) {
+    iziToast.error({
       title: 'Error',
       message: `❌ Sorry, there are no images matching your search query. Please, try again!`,
+      theme: 'dark',
+      progressBarColor: '#FFFFFF',
+      color: '#EF4040',
       position: 'topRight',
     });
-    }
-    const galleryMarkup = images.map(image => {
-        return `<li class="gallery-item">
-        <a class="gallery-link" href="${image.largeImageURL}">
-          <img
-            class="gallery-image"
-            width="1280"
-            height="152"
-            src="${image.webformatURL}"
-            data-source="${image.largeImageURL}"
-            alt="${image.tags}"
-          />
-          <ul class="gallery-description">
-          <li><h3>Likes</h3><p>${image.likes}</p>
-          </li>
-          <li><h3>Views</h3><p>${image.views}</p>
-            </li>
-            <li><h3>Comments</h3><p>${image.comments}</p>
-              </li>
-              <li><h3>Downloads</h3><p>${image.downloads}</p>
-                </li>
-          </ul>
+  } else {
+    const galleryMarkup = data.map((photo) => {
+        return `<li class="photos-list-item">
+        <a class="photos-list-link" href="${photo.largeImageURL}">
+        <img class="photo" src="${photo.webformatURL}" alt="${photo.tags}"/>
         </a>
-      </li>`;
+        <ul class="photo-information-container">
+        <li class="item-photo-information-container"><p><span class="accent">Likes</span></br>${photo.likes}</p></li>
+        <li class="item-photo-information-container"><p><span class="accent">Views</span></br>${photo.views}</p></li>
+        <li class="item-photo-information-container"><p><span class="accent">Comments</span></br>${photo.comments}</p></li>
+        <li class="item-photo-information-container"><p><span class="accent">Downloads</span></br>${photo.downloads}</p></li>
+        </ul>
+        </li>`;
     })
         .join("");
     
     galleryList.insertAdjacentHTML('beforeend', galleryMarkup);
 
     const lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-  });
+      captionsData: 'alt',
+    });
 
-  lightbox.refresh();
+    lightbox.refresh();
+  }
 }
 
 
