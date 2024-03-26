@@ -1,7 +1,6 @@
 const input = document.querySelector("input");
 const query = input.value.trim();
 const encodedQuery = encodeURIComponent(query);
-const galleryList = document.querySelector(".gallery");
 
 export function fetchImages(query) {
     const searchParams = new URLSearchParams({

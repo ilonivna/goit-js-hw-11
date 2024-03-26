@@ -14,9 +14,10 @@ const input = document.querySelector("input");
 const button = document.querySelector("button");
 
 
-input.addEventListener("input", () => {
+input.addEventListener("input", (event) => {
+    event.preventDefault();
     query = input.value.trim();
-    galleryList.innerHTML = "";
+    
 });
 
 button.addEventListener("click", (event) => {
@@ -27,7 +28,7 @@ button.addEventListener("click", (event) => {
       message: ` Please fill in the field for search`,
       position: 'topRight',
     });
-    galleryList.innerHTML = '';
+    // galleryList.innerHTML = '';
   }
     if (query) {
        
