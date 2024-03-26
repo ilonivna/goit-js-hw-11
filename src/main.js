@@ -11,7 +11,7 @@ import { renderImages } from "./js/render-functions.js";
 const galleryList = document.querySelector(".gallery");
 let query;
 const input = document.querySelector("input");
-const button = document.querySelector("button");
+const form = document.querySelector("form");
 const loader = document.querySelector('.loader');
 
 function showLoader() {
@@ -28,7 +28,7 @@ input.addEventListener("input", (event) => {
     
 });
 
-button.addEventListener("click", (event) => {
+form.addEventListener("submit", (event) => {
     event.preventDefault();
     showLoader();
     if (query === "") {
