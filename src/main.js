@@ -12,7 +12,15 @@ const galleryList = document.querySelector(".gallery");
 let query;
 const input = document.querySelector("input");
 const button = document.querySelector("button");
+const loader = document.querySelector('.loader');
 
+function showLoader() {
+    loader.classList.remove("is-hidden");
+}
+
+function hideLoader() {
+    loader.classList.add("is-hidden");
+}
 
 input.addEventListener("input", (event) => {
     event.preventDefault();
@@ -22,16 +30,15 @@ input.addEventListener("input", (event) => {
 
 button.addEventListener("click", (event) => {
     event.preventDefault();
+    showLoader();
     if (query === "") {
-    iziToast.error({
-      color: 'yellow',
-      message: ` Please fill in the field for search`,
-      position: 'topRight',
-    });
-    // galleryList.innerHTML = '';
-  }
+        iziToast.error({
+            color: 'yellow',
+            message: ` Please fill in the field for search`,
+            position: 'topRight',
+        });
+    }
     if (query) {
-       
         fetchImages(query)
             .then(data => renderImages(data.hits))
             .catch(error => {
@@ -40,9 +47,9 @@ button.addEventListener("click", (event) => {
                     title: 'Error',
                     message: `❌ Sorry, there are no images matching your search query. Please, try again!`,
                     position: 'topRight',
-                });
-
-            });
+                })
+            })
+            .finally(() => hideLoader())
     }
     galleryList.innerHTML = "";
 });

@@ -73,6 +73,10 @@ font-size: 14px;
   border-radius: 100px 100px 0 0;
 }
 
+.is-hidden {
+  display: none;
+}
+
 .loader:after {
   content: "";
   position: absolute;
