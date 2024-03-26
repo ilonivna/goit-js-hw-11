@@ -16,12 +16,22 @@ const button = document.querySelector("button");
 
 input.addEventListener("input", () => {
     query = input.value.trim();
-    // galleryList.innerHTML = "";
+    galleryList.innerHTML = "";
 });
 
-button.addEventListener("click", () => {
+button.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (query === "") {
+    iziToast.error({
+      color: 'yellow',
+      message: ` Please fill in the field for search`,
+      position: 'topRight',
+    });
+    galleryList.innerHTML = '';
+  }
     if (query) {
-        fetchImages()
+       
+        fetchImages(query)
             .then(data => renderImages(data.hits))
             .catch(error => {
                 console.log(error);
@@ -33,6 +43,7 @@ button.addEventListener("click", () => {
 
             });
     }
+    galleryList.innerHTML = "";
 });
 
 

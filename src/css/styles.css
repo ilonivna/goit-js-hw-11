@@ -7,8 +7,9 @@
   line-height: 24px;
   font-weight: 400;
 
+
   color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
+  background-color: seashell;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,7 +18,32 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.gallery {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-left: 20px;
+}
 
+.photo-information-container {
+display: flex;
+gap: 12px;
+}
+
+.photo {
+  display: block;
+  border-radius: 10px;
+  width: 360px;
+  height: 240px;
+  contain: content;
+
+}
+
+form {
+  margin-top: 60px;
+  margin-left: 200px;
+}
 input {
   width: 272px;
   height: 40px;
@@ -42,7 +68,7 @@ font-size: 14px;
 .loader {
   width: 160px;
   height: 185px;
-  position: fixed;
+  position: relative;
   background: #fff;
   border-radius: 100px 100px 0 0;
 }
